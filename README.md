@@ -39,18 +39,18 @@
 |introduction|text|null: false|
 |price|integer|null: false|
 |brand|references|foreign_key: true|
-|item_condition|references|null: false, foreign_key: true|
-|postage_pater|references|null: false, foreign_key: true|
-|prefecture|string|null: false|
-|size|references|null: false, foreign_key: true|
-|postage_type|references|null: false, foreign_key: true|
+|item_condition_id(active_hash)|integer|null: false|
+|postage_payer_id(active_hash)|integer|null: false|
+|prefecture_id(active_hash)|integer|null: false|
+|size_id|integer|null: false, foreign_key: true|
+|postage_type_id(active_hash)|integer|null: false|
 |item_img|references|null: false, foreign_key: true|
 |category|references|null: false, foreign_key: true|
 |trading_status|enum|null: false|
 |seller|references|null: false, foreign_key: true|
 |buyer|references|foreign_key: true|
 |deal_closed_date|timestamp|------|
-|preparation_day|references|null: false, foreign_key: true|
+|preparation_day_id(active_hash)|integer|null: false|
 
 ### Association
   has_many :comments, dependent: :destroy
@@ -63,6 +63,7 @@
   belongs_to_active_hash :postage_payer
   belongs_to_active_hash :preparation_day
   belongs_to_active_hash :postage_type
+  belongs_to_active_hash :prefecture
   belongs_to :brand
   belongs_to :seller, class_name: "User"
   belongs_to :buyer, class_name: "User"
@@ -79,7 +80,7 @@
 |city|string|null: false|
 |house_number|string|null: false|
 |building_name|string|------|
-|phone_number|integer|unique: true|
+|phone_number|string|unique: true|
 |user|references|null: false, foreign_key: true|
 ### Associations
   belongs_to :user
@@ -90,7 +91,7 @@
 |review|text|null: false|
 |user|references|null: false, foreign_key: true|
 |item|references|null: false, foreign_key: true|
-|evalution|references|null: false, foreign_key: true|
+|evalution_id(active_hash)|integer|null: false|
 ### Associations
   belongs_to_active_hash :evaluation
   belongs_to :user
@@ -102,16 +103,6 @@
 |kind|string|null: false|
 ### Associations
   has_many :items
-
-## credit_cards
-|Column|Type|Options|
-|card_number|integer|null: false,unique: true|
-|expiration_year|integer(2)|null: false|
-|expiration_month|integer(2)|null: false|
-|security_code|integer(3)|null: false|
-|user|references|null: false, foreign_key: true|
-### Associations
-  belongs_to:user
 
 ## brands
 |Column|Type|Options|

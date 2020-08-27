@@ -44,7 +44,6 @@
 |prefecture_id(active_hash)|integer|null: false|
 |size_id|integer|null: false, foreign_key: true|
 |postage_type_id(active_hash)|integer|null: false|
-|item_img|references|null: false, foreign_key: true|
 |category|references|null: false, foreign_key: true|
 |trading_status|enum|null: false|
 |seller|references|null: false, foreign_key: true|
@@ -106,7 +105,7 @@
 
 ## brands
 |Column|Type|Options|
-|name|stirng|-------|
+|name|stirng|null: false|
 ### Associations
   has_many :items
 
@@ -134,3 +133,13 @@
 ### Association
   belongs_to :user
   belongs_to :item
+
+## credit_cards
+|Column|Type|Options|
+|card_number|integer|null: false,unique: true|
+|expiration_year|integer(2)|null: false|
+|expiration_month|integer(2)|null: false|
+|security_code|integer(3)|null: false|
+|user|references|null: false, foreign_key: true|
+### Associations
+  belongs_to:use

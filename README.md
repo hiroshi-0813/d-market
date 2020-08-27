@@ -136,8 +136,8 @@
 
 ## credit_cards
 |Column|Type|Options|
-|user_id|integer|---|
-|customer_id|string|---|
-|card_id|string|----|
+|user_id|integer|null: false, foreign_key: true|
+|customer_id|string|null: false|
+|card_id|string|null: false|
 ### Associations
   belongs_to:use

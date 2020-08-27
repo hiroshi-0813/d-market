@@ -136,10 +136,8 @@
 
 ## credit_cards
 |Column|Type|Options|
-|card_number|integer|null: false,unique: true|
-|expiration_year|integer(2)|null: false|
-|expiration_month|integer(2)|null: false|
-|security_code|integer(3)|null: false|
-|user|references|null: false, foreign_key: true|
+|user_id|integer|---|
+|customer_id|string|---|
+|card_id|string|----|
 ### Associations
   belongs_to:use

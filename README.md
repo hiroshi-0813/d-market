@@ -140,4 +140,4 @@
 |customer_id|string|null: false|
 |card_id|string|null: false|
 ### Associations
-  belongs_to:use
+  belongs_to:user

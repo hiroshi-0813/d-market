@@ -75,3 +75,4 @@ end
 
 gem 'jp_prefecture'
 gem 'active_hash'
+gem 'devise'

@@ -3,7 +3,7 @@
 ## users_table
 |Column|Type|Options|
 |------|----|-------|
-|email|string|null: false, unique: true, index: ture|
+|email|string|null: false, unique: true, index: true|
 |password|string|null: false|
 |nickname|string|null: false|
 ### Association
@@ -27,6 +27,7 @@
 |birth_year|date|null: false|
 |birth_month|date|null: false|
 |introductin|text|--|
+|phone_number|string|unique:true|
 |user|references|null:false, foreign_key: true|
 
 ### Association
@@ -79,7 +80,6 @@
 |city|string|null: false|
 |house_number|string|null: false|
 |building_name|string|------|
-|phone_number|string|unique: true|
 |user|references|null: false, foreign_key: true|
 ### Associations
   belongs_to :user
@@ -99,7 +99,7 @@
 ## categories
 |Column|Type|Options|
 |name|string|null: false|
-|kind|string|null: false|
+|ancestry|string|null: false|
 ### Associations
   has_many :items
 

@@ -103,10 +103,9 @@ ActiveRecord::Schema.define(version: 2020_08_30_002342) do
     t.string "city", null: false
     t.string "house_number", null: false
     t.string "building_name"
-    t.bigint "user_id", null: false
+    t.integer "user", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_sending_destinations_on_user_id"
   end
 
   create_table "user_evaluations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -138,7 +137,6 @@ ActiveRecord::Schema.define(version: 2020_08_30_002342) do
   add_foreign_key "favorites", "users"
   add_foreign_key "items_imgs", "items"
   add_foreign_key "profiles", "users"
-  add_foreign_key "sending_destinations", "users"
   add_foreign_key "user_evaluations", "items"
   add_foreign_key "user_evaluations", "users"
 end

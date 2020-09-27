@@ -1,0 +1,9 @@
+.home-main
+  .header_contents
+    .header_logo
+      = image_tag "logo.png", size: "140x40"
+    .header-seach
+      = form_with do |form| 
+        = form.text_field :keyword, placeholder: "キーワードから探す", class: "search-input"
+        = link_to "#", class: "serch-btn" do
+          = image_tag "icon-search.png", size: "18x18"

@@ -65,6 +65,7 @@
   belongs_to_active_hash :postage_type
   belongs_to_active_hash :prefecture
   belongs_to :brand
+  belongs_to :items_img
   belongs_to :seller, class_name: "User"
   belongs_to :buyer, class_name: "User"
 

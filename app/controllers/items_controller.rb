@@ -1,5 +1,10 @@
 class ItemsController < ApplicationController
   def index
-    @item = item.includes(:items_imgs)
+    @items = Item.all
   end
-end
+
+  def show
+    @items = Item.find(params[:id])
+    # @items = Item.includes(:items_imag).find(params[:id])
+  end
+end           

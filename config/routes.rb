@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
@@ -10,12 +11,7 @@ Rails.application.routes.draw do
     post 'creditcards', to: 'users/registrations#create_creditcard'
   end
 
-<<<<<<< Updated upstream
   root 'items#index'
-  
-=======
-  root "items#index"
->>>>>>> Stashed changes
   resources :users, only: [:show, :edit, :update]do
     member do
       get 'profile'
@@ -31,8 +27,6 @@ Rails.application.routes.draw do
     
   end
 
-<<<<<<< Updated upstream
-=======
   resources :items do
     member do
       post 'purchase'
@@ -40,7 +34,6 @@ Rails.application.routes.draw do
     end
   end
   
->>>>>>> Stashed changes
   resources :credit_cards, only: [:new, :show]do
     collection do
       post 'show', to: 'credit_cards#show'
@@ -48,9 +41,5 @@ Rails.application.routes.draw do
       post 'delete', to: 'credit_cards#delete'
     end
   end
-<<<<<<< Updated upstream
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-=======
-
->>>>>>> Stashed changes
 end

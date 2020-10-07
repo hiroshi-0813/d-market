@@ -1,0 +1,2 @@
+class ItemsImg < ApplicationRecord
+end

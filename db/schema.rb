@@ -54,8 +54,9 @@ ActiveRecord::Schema.define(version: 2020_08_30_002342) do
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
+    t.text "introduction", null: false
     t.integer "price", null: false
-    t.integer "brand"
+    t.integer "brand_id"
     t.integer "item_condition_id", null: false
     t.integer "postage_payer_id", null: false
     t.integer "prefecture_id", null: false
@@ -63,8 +64,8 @@ ActiveRecord::Schema.define(version: 2020_08_30_002342) do
     t.integer "postage_type_id", null: false
     t.integer "category", null: false
     t.string "trading_status", null: false
-    t.integer "seller", null: false
-    t.integer "buyer"
+    t.integer "seller_id", null: false
+    t.integer "buyer_id"
     t.integer "preparation_day_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -103,10 +104,9 @@ ActiveRecord::Schema.define(version: 2020_08_30_002342) do
     t.string "city", null: false
     t.string "house_number", null: false
     t.string "building_name"
-    t.bigint "user_id", null: false
+    t.integer "user", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_sending_destinations_on_user_id"
   end
 
   create_table "user_evaluations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -138,7 +138,6 @@ ActiveRecord::Schema.define(version: 2020_08_30_002342) do
   add_foreign_key "favorites", "users"
   add_foreign_key "items_imgs", "items"
   add_foreign_key "profiles", "users"
-  add_foreign_key "sending_destinations", "users"
   add_foreign_key "user_evaluations", "items"
   add_foreign_key "user_evaluations", "users"
 end

@@ -1,8 +1,8 @@
 class ItemsController < ApplicationController
 
-  before_action :set_item, except: [:index, :new, :create]
+
   def index
-    @item = Item.includes(:items_imgs).order('created_at DESC')
+    @item = Item.includes(:items_img).order('created_at DESC')
   end
 
   def new
@@ -12,9 +12,10 @@ class ItemsController < ApplicationController
   end
 
   def create
+    binding.pry
     @item = Item.new(item_params)
     if @item.save
-      redirect_to root_path
+      redirect_to root_path, notice: '出品しました'
     else
       redirect_to new_item_path
     end
@@ -37,7 +38,6 @@ class ItemsController < ApplicationController
   end
 
   private
-
   def item_params
     params.require(:item).permit(
       :name,
@@ -51,13 +51,11 @@ class ItemsController < ApplicationController
       postage_type_id: [:id, :postage_type],
       preparation_day_id: [:id, :preparation_day],
       # :trading_status,
-      seller:[:id], 
-      buyer:[:id], 
+      seller_id: [:id],
+      buyer_id: [:id],
       # :deal_closed_date, 
-      items_img_attributes: [:url, :_destroy, :id])
+      items_img_attributes: [:url, :id])
+      .merge(seller_id: current_user)
   end
 
-  def set_item
-    @item = Item.find(params[:id])
-  end
 end

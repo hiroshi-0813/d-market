@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   root 'items#index'
 
-  resources :items, only: [:index, :new, :create, :edit, :update]
+  resources :items, only: [:index, :new, :create]
 
   resources :users, only: [:show, :edit, :update]do
     member do

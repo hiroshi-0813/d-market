@@ -20,21 +20,7 @@ class ItemsController < ApplicationController
     end
   end
 
-  def edit
-    @item = current_user.Item.find(params[:id])
-  end
 
-  def update
-    if @item.update(item_params)
-      redirect_to root_path
-    else
-      render :edit
-    end
-  end
-
-  def destroy
-    
-  end
 
   private
   def item_params

@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   end
 
   root 'items#index'
+
+  resources :items, only: [:index, :new, :create]
+
   resources :users, only: [:show, :edit, :update]do
     member do
       get 'profile'
@@ -41,5 +44,5 @@ Rails.application.routes.draw do
       post 'delete', to: 'credit_cards#delete'
     end
   end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
 end

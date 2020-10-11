@@ -7,10 +7,9 @@ class Item < ApplicationRecord
     belongs_to_active_hash :item_condition
 
   belongs_to :user, optional: true
-  belongs_to :category
-  belongs_to :brand
-  belongs_to :seller, class_name: "User"
-  belongs_to :buyer, class_name: "User"
+  belongs_to :brand, optional: true
+  belongs_to :seller, class_name: "User", optional: true
+  belongs_to :buyer, class_name: "User", optional: true
   has_many :items_img, dependent: :destroy
   accepts_nested_attributes_for :items_img, allow_destroy: true
   accepts_nested_attributes_for :brand

@@ -12,9 +12,8 @@ class ItemsController < ApplicationController
   end
 
   def create
-    binding.pry
     @item = Item.new(item_params)
-    if @item.save
+    if @item.save!
       redirect_to root_path, notice: '出品しました'
     else
       redirect_to new_item_path
@@ -44,18 +43,17 @@ class ItemsController < ApplicationController
       :price,
       :introduction,
       # :category,
-      brand_id_attributes: [:id, :name],
-      item_condition_id: [:id, :item_condition],
-      postage_payer_id: [:id, :postage_payer],
-      prefecture_id: [:id, :name],
-      postage_type_id: [:id, :postage_type],
-      preparation_day_id: [:id, :preparation_day],
-      # :trading_status,
-      seller_id: [:id],
-      buyer_id: [:id],
-      # :deal_closed_date, 
-      items_img_attributes: [:url, :id])
-      .merge(seller_id: current_user)
+      :item_condition_id,
+      :postage_payer_id,
+      :prefecture_id,
+      :postage_type_id,
+      :preparation_day_id,
+      :seller_id,
+      :buyer_id,
+      :deal_closed_date, 
+      brand_attributes: [:id, :name],
+      items_img_attributes: [:url, :id]
+    ).merge(seller_id: current_user.id)
   end
 
 end

@@ -39,7 +39,7 @@
       %h2 発送方法 [必須]
       = f.collection_select :postage_type_id, PostageType.all, :id, :postage_type, prompt: "選択してください"
       %h2 発送までの日数 [必須]
-      = f.collection_select :preparation_day, PreparationDay.all, :id, :preparation_day, prompt: "選択してください"
+      = f.collection_select :preparation_day_id, PreparationDay.all, :id, :preparation_day, prompt: "選択してください"
       %h2 価格 [必須]
       = f.number_field :price
       = f.submit "出品する"

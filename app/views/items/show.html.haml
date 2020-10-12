@@ -1,0 +1,100 @@
+.home-main
+  .header_contents
+    .header_logo
+      = image_tag "logo.png", size: "140x40"
+    .header-seach
+      = form_with do |form| 
+        = form.text_field :keyword, placeholder: "キーワードから探す", class: "search-input"
+        = link_to "#", class: "serch-btn" do
+          = image_tag "icon-search.png", size: "18x18"
+.item_main
+  .item_holder
+    .item_box
+      .item_contents
+        .item_data
+          .item_name
+            ゲベ
+          .item_image
+            = image_tag "black.jpg"
+            .small_image
+              = image_tag "black.jpg", size: "140x100"
+          .item_price
+            30000000円
+          .item_price_zei
+            (税込み)  送料込み
+          .item_buy
+            購入画面に進む
+          .item_description
+            ブラックロータスの本物です。ああああああああああああああああああああああああああああああああああああああああああああああああああ
+          .item_status
+            .today
+              .tr
+                .th
+                  出品者
+                .td
+                  松岡修造
+              .tr
+                .th
+                  カテゴリー
+                .td
+                  カード
+              .tr
+                .th
+                  商品の状態
+                .td
+                  未使用に近い
+              .tr
+                .th
+                  配送料の負担
+                .td
+                  送料込み（出品者負担）
+              .tr
+                .th
+                  発送元の地域
+                .td
+                  青森県
+              .tr
+                .th
+                  発送日の目安
+                .td
+                  1~2日で発送
+          .option
+            .fav
+              ★お気に入り
+            .report
+              🏴不適切な商品の通報
+.form
+  .form-to
+    .form-list
+      .form-title
+        .title
+          FURIMAについて
+        %li.list
+          会社概要（運営会社）
+        %li.list
+          プライバシーポリシー
+        %li.list
+          FURIMA利用規約
+        %li.list
+          ポイントに関する特約
+      .form-title
+        .title
+          FURIMAを見る
+        %li.list
+          カテゴリー一覧
+        %li.list
+          ブランド一覧
+      .form-title
+        .title
+          ヘルプ＆ガイド
+        %li.list
+          FURIMAガイド
+        %li.list
+          FURIMAロゴ利用オンライン
+        %li.list
+          お知らせ
+    .form-logo
+      .logo
+        = image_tag "logo-white.png", size: "150x35"
+      .logo-text
+        FURIMA

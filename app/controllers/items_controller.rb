@@ -5,6 +5,10 @@ class ItemsController < ApplicationController
     @item = Item.includes(:items_img).order('created_at DESC')
   end
 
+  def show
+    @items = Item.find(params[:id])
+  end
+
   def new
     @item = Item.new
     @item.items_img.new
@@ -41,5 +45,4 @@ class ItemsController < ApplicationController
       items_img_attributes: [:url, :id]
     ).merge(seller_id: current_user.id)
   end
-
 end

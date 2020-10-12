@@ -1,0 +1,45 @@
+.update
+  .update_item
+    最大5枚まで可能です。 [必須]
+    = form_for @item do |f|
+      #img-box
+        #previews
+          - if @item.persisted? 
+            - @item.images.each_with_index do |image, i|
+              = image_tag @item.items_img.url, data: { index: i }, width: "100", height: '100'
+        = f.fields_for :items_img do |i|
+          .js-file_group{data: {index: "items_img.index"}}
+            = i.file_field :url, class: "js-file" do
+              %span.js-remove
+                = f.submit "削除"
+        - if @item.persisted?
+          = items_img.check_box :_destroy, data:{ index: items_img.index }, class: 'hidden-destroy'
+        - if @item.persisted?
+          .js-file_group{data: {index: "@item.items_img.count"}}
+            = file_field_tag :url, name: "item[items_img_attributes][#{@item.items_img.count}][url]", class: 'js-file'
+
+      %h2 商品名 [必須]
+      = f.text_field :name
+      %h2 商品の説明 [必須]
+      = f.text_area :introduction
+      -# %h2 カテゴリー [必須]
+      -# = f.text_field :category
+      .form-group.brand--container
+      = f.fields_for :brand do |brand|
+        = brand.label "ブランド"
+        .form-require-gray [任意]
+        %div
+          = brand.text_field :name, placeholder: "例）シャネル", value: "", class: "input-default"
+      %h2 商品状態 [必須]
+      = f.collection_select :item_condition_id, ItemCondition.all, :id, :item_condition, prompt: "選択してください"
+      %h2 配送料の負担 [必須]
+      = f.collection_select :postage_payer_id, PostagePayer.all, :id, :postage_payer, prompt: "選択してください"
+      %h2 配送元の地域 [必須]
+      = f.collection_select :prefecture_id, Prefecture.all, :id, :name, prompt: "選択してください"
+      %h2 発送方法 [必須]
+      = f.collection_select :postage_type_id, PostageType.all, :id, :postage_type, prompt: "選択してください"
+      %h2 発送までの日数 [必須]
+      = f.collection_select :preparation_day_id, PreparationDay.all, :id, :preparation_day, prompt: "選択してください"
+      %h2 価格 [必須]
+      = f.number_field :price
+      = f.submit "出品する"

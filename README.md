@@ -141,4 +141,4 @@
 |customer_id|string|null: false|
 |card_id|string|null: false|
 ### Associations
-  belongs_to:user
+  belongs_to:user　

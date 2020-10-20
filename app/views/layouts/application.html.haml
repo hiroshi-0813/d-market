@@ -12,3 +12,9 @@
     %script{src: "//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js", type: "text/javascript"}
   %body
     = yield
+    %li.user__login
+      = link_to new_user_session_path, class: "login_btn" do
+        ログイン
+    %li.user__new
+      = link_to new_user_registration_path, class: "new_btn" do
+        新規会員登録 

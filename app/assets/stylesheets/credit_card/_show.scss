@@ -1,0 +1,66 @@
+.c{
+  background-color: whitesmoke;
+  padding: 40px 0 40px;
+  .c-body{
+    height: 350px;
+    width: 700px;
+    background-color: #fff;
+    margin: 0 auto;
+    &_container{
+      &_message{
+        font-size: 18px;
+        text-align: center;
+        padding: 12px 4%;
+        border-bottom: 1px solid #f5f5f5;
+        font-weight: bold;
+      }
+      &_inner{
+        max-width: 570px;
+        margin: 0 auto;
+        padding: 40px;
+        border-bottom: 1px solid #eee;
+        &_body{
+          max-width: 320px;
+          font-size: 16px;
+          margin: 0 auto;
+          font-weight: bold;
+          padding: 24px 0;
+          position: relative;
+          &_content{
+            max-width: 320px;
+            position: relative;
+            &_btn{
+              background: #3ccAca;
+              border: 1px solid #3ccAca;
+              color: #fff;
+              width: 100%;
+              margin: 8px 0 0;
+              height: 48px;
+              padding: 10px 16px 8px;
+              line-height: 1.5;
+              font-size: 16px;
+              cursor: pointer;
+              font-weight: 600;
+            }
+            &_btn2{
+              background: #3ccAca;
+              border: 1px solid #3ccAca;
+              color: #fff;
+              width: 100%;
+              margin: 8px 0 0;
+              height: 48px;
+              padding: 10px 16px 8px;
+              line-height: 1.5;
+              font-size: 16px;
+              cursor: pointer;
+              font-weight: 600;
+              &_font{
+                color: #fff;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+= render partial: 'layouts/header', locals: { header: @header }
+.i__middle
+  .i__middle__title
+    %h1
+      =@category.name
+      の商品一覧
+  .i__middle__container
+    = render @items
+  .i__middle__page
+    = paginate(@items)
+= render partial: 'layouts/footer', locals: { footer: @footer } 

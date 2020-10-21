@@ -32,7 +32,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       sign_in(:user, @user)
     else
       flash.now[:alert] = '登録に失敗しました。'
-      redirect_to "/" and return
+      redirect_to root_path and return
   end
 end
 

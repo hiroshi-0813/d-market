@@ -10,8 +10,6 @@ class ApplicationController < ActionController::Base
 
   def set_category
     @category_parent_array = Category.where(ancestry: nil)
-        @category_parent_array << parent
-      end
   end
   
   def configure_permitted_parameters

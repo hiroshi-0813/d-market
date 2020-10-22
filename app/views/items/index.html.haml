@@ -1,200 +1,23 @@
+= render 'layouts/header'
 
+.i__main
+  .i__main__items
+    %h2.i__main__items__head 新着アイテム一覧
+    .i__main__items__lists
+      .i__main__items__lists__items
+        = render @items
 
-.home-main
-  .header_contents
-    .header_logo
-      = image_tag "logo.png", size: "140x40"
-    .header-seach
-      = form_with do |form| 
-        = form.text_field :keyword, placeholder: "キーワードから探す", class: "search-input"
-        = link_to "#", class: "serch-btn" do
-          = image_tag "icon-search.png", size: "18x18"
-    .header_buttom
-  .contens-bar
-    .serch-contents
-      .serch-category
-        カテゴリー
-      .serch-brand
-        ブランド
-    .account-contents
-      .log-in
-        ログイン
-      .sign-up
-        新規会員登録
-.title-pic
-  .title
-    人生を変えるアプリ
-  .title-text
-    FURIMAは誰でもかんたんに出品・購入できる
-    .title-text2
-    フリマアプリです
-  .title-link
-    .apple
-      = link_to "#", class: "contents__btn contents__btn--instagram" do
-        = image_tag "apple.png", size: "150x45"
-    .google
-      = link_to "#", class: "contents__btn contents__btn--instagram" do
-        = image_tag "google.png", size: "150x65"
-.pic_3
-  .text-top
-    FURIMAが選ばれる３つの理由
-  .pic-box
-    .pic1
-      .pic-1
-        1
-      .pic-text
-        .pic-title
-          %li.text-blue
-            3分
-          %li.text
-            ですぐ出品
-      %li.writing
-        スマホで入力するだけで簡単に出品できる！
-    .pic2
-      .pic-2
-        2
-      .pic-text
-        .pic-title
-          %li.left-text-blue
-            シンプル
-          %li.left-text
-            で使いやすい
-      %li.writing
-        めんどくさい入力は必要なく、検索も購入もスムーズ！
-    .pic3
-      .pic-3
-        3
-      .pic-text
-        .pic-title
-          %li.left-text
-            手数料
-          %li.left-text-blue
-            業界最安
-      %li.writing
-        最大３％でお得に出品＆購入！
-.middle_pic
-  .middle-text-blok
-    .middle-title-text
-      会員数日本一位
-    .middle-text
-      %li.middile-text
-      FURIMAは、フリマアプリで最も人気。
-      %li.middile-text
-      出品・購入回数も業界最多です！
-      %li.middile-text
-      欲しかったあの商品に出会えるかもしれません。
-
-.pic-box
-  .pic-box-to
-    .pic-box-title
-      FURIMAの特徴
-    .pic-box3
-      .pic
-        = image_tag "icon-01.png", size: "250x330"
-        %li.box-title
-          簡単に売り買いできる
-        %li.box-text
-          スマホ１つで、いつでもどこでも簡単に出品、購入が可能！
-      .pic
-        = image_tag "icon-02.png", size: "250x330"
-        %li.box-title
-          売上金は即日振り込みに対応
-        %li.box-text
-          午前９時までに振り込みを以来いただければ、翌日に指定の口座に入金いたします！
-      .pic
-        = image_tag "icon-03.png", size: "250x330"
-        %li.box-title
-          様々な支払いに対応
-        %li.box-text
-          お支払いは、クレジットカードだけでなく、ポイントや売上金など多彩な方法があります。
-.item-line
-  .item-to
-    .item-text
-      ピックアップカテゴリー
-    .item-text-blue
-      新規投稿商品
-    .item-pic-list
-      .item-pic1
-        .item-image
-          = image_tag "black.jpg", size: "100x130"
-        .item-image-text
-          .item-name
-            ブラックロータス
-          .item-price
-            30000000円
-            .item-fav
-              ☆
-          .item-sale-tex
-            (税込)
-      .item-pic2
-        .item-image
-          = image_tag "appstore.jpg", size: "100x130"
-        .item-image-text
-          .item-name
-            itunesカード
-          .item-price
-            10000
-            .item-fav
-              ☆
-          .item-sale-tex
-            (税込)
-      .item-pic3
-        .item-image
-          = image_tag "chi.jpg", size: "100x130"
-        .item-image-text
-          .item-name
-            ちくわ
-          .item-price
-            2円
-            .item-fav
-              ☆
-          .item-sale-tex
-            (税込)
-.form-pic
-  .form-to
-    .form-link-title
-      誰でも簡単、人生を変えるアプリ
-    .form-link-text
-      今すぐ無料ダウンロード
-    .link-box
-      .app
-        = link_to "#", class: "contents__btn contents__btn--instagram" do
-          = image_tag "apple.png", size: "150x45"
-      .google
-        = link_to "#", class: "contents__btn contents__btn--instagram" do
-          = image_tag "google.png", size: "170x65"
-.form
-  .form-to
-    .form-list
-      .form-title
-        .title
-          FURIMAについて
-        %li.list
-          会社概要（運営会社）
-        %li.list
-          プライバシーポリシー
-        %li.list
-          FURIMA利用規約
-        %li.list
-          ポイントに関する特約
-      .form-title
-        .title
-          FURIMAを見る
-        %li.list
-          カテゴリー一覧
-        %li.list
-          ブランド一覧
-      .form-title
-        .title
-          ヘルプ＆ガイド
-        %li.list
-          FURIMAガイド
-        %li.list
-          FURIMAロゴ利用オンライン
-        %li.list
-          お知らせ
-    .form-logo
-      .logo
-        = image_tag "logo-white.png", size: "150x35"
-      .logo-text
-        FURIMA
+.i__banner
+  .i__banner__visual
+    .i__banner__visual__content
+      %h2.i__banner__visual__content__top だれでも簡単、人生を変えるフリマアプリ
+      %p.i__banner__visual__content__text 今すぐ無料ダウンロード！
+    .i__banner__visual__logo
+      .i__banner__visual__logo__app
+        = link_to "http://apple.com/jp/" do
+          = image_tag 'apple-icon.png', alt: '',height: '50px', width: '165px', class: 'apple'
+      .i__banner__visual__logo__app
+        = link_to "http://google.co.jp" do
+          = image_tag 'google-play.png', alt: '', height: '50px', width: '165px',class: 'google'
+.i__footer
+  = render 'layouts/footer'

@@ -76,8 +76,14 @@ end
 gem 'jp_prefecture'
 gem 'active_hash'
 gem 'devise'
+gem "font-awesome-sass"
+gem 'active_hash'
+gem 'ancestry'
+gem 'devise'
 gem 'carrierwave'
 gem 'mini_magick'
-gem 'fog-aws'
+gem 'pry-rails'
+gem 'payjp'
 gem 'jquery-rails'
-
+gem 'ransack'
+gem 'kaminari'

@@ -1,0 +1,26 @@
+= render partial: 'layouts/header'
+
+%main.y__l-container
+  .y__l-container-box
+    .y__search-result
+      .y__search-result-header
+        = @search.name_cont
+        の検索結果
+        .y__search-result-number
+          1 - 
+          = @items.count
+          件の表示
+        .y__search-result-items-box
+          - @items.each do |item|
+            .result__item
+              =link_to item_path(item.id),method: :get do
+                .result__item__image
+                  = image_tag item.images[0].src.url, height: "160px", width: "160px"
+                  %p
+                    ¥
+                    = item.price
+                  %span 
+                    = item.name 
+        = paginate @items
+
+= render partial: 'layouts/footer'

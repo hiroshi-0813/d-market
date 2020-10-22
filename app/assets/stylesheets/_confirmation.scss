@@ -1,0 +1,137 @@
+.r__container{
+  background-color: #f5f5f5;
+  height: 100vh;
+  width: 100%;
+
+  // ヘッダー
+  .r__header{
+    height: 128px;
+    width: 100%;
+    // text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &__logo{
+    }
+  }
+
+  // メイン
+  .r__main{
+    // コンテンツ
+    &__contents{
+      height: 100%;
+      width: 700px;
+      background-color: #ffffff;
+      margin: 0 auto;
+
+      // 購入内容の確認
+      &__first{
+        text-align: center;
+        font-size: 22px;
+        font-weight: bold;
+        padding: 32px;
+        border-bottom: solid 1px #f5f5f5;
+      }
+
+      // 商品詳細＆購入ボタン
+      &__second{
+        width:100%;
+        border-bottom: solid 1px #f5f5f5;
+
+        // 商品詳細 写真・支払金額
+        &__middle{
+          display: flex;
+          padding: 24px 130px;
+          justify-content: space-between;
+          .r__item__box{
+          &__name{
+           padding-bottom:15px;
+          }
+          &__price{
+            font-weight: bold;
+          }
+          // 商品写真
+          &__firstImage{
+            padding-top: 10px;
+          }
+        }
+        }
+      }
+        // 支払金額＆購入ボタン
+        &__third{
+          width: 60%;
+          margin:0 auto;
+          &__price{
+            margin: 20px auto;
+            &__box{
+              display: flex;
+              border-bottom: solid 1px #f5f5f5;
+              font-size: 20px;
+              font-weight: bold;
+              padding-bottom:10px;
+              justify-content: space-between;
+              .price-box{
+                font-size:25px;
+              }
+              .message{
+                font-size:15px;
+                line-height:35px;
+              }
+          }
+            }
+            &__pay{
+              text-align: left;
+              border-bottom: solid 1px #f5f5f5;
+              padding-bottom:10px;
+              font-weight: bold;
+            }
+            &__address{
+              text-align: left;
+              border-bottom: solid 1px #f5f5f5;
+              padding:20px 0px;
+              p {
+                color:red;
+                font-weight: bold;
+              }
+            }
+            &__btn{ 
+              width:500px;
+              margin: 20px auto;
+              text-align: left;
+              padding-bottom:40px;
+              padding-left:30px;
+             .button{
+              margin-top: 15px;
+              width: 350px;
+              background-color: #3ccAce;
+              color: #fff;
+              height: 50px;
+              font-size: 20px;
+              font-weight: bold;
+              border: 0px none;
+              
+             }
+          }
+          
+            }
+          }
+        }
+      
+    }
+  
+
+  // フッター
+  .r__footer{
+    margin-top: 60px;
+    z-index: 1;
+    height: 100px;
+    padding: 55px 0;
+    text-align: center;
+    background-color: #272727;
+    &__logo{
+    }
+    &__c--mark{
+      font-size: 12px;
+      color: #ffffff;
+    }
+  }

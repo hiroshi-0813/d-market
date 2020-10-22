@@ -1,0 +1,196 @@
+* {
+  box-sizing: border-box;
+  margin:0px;
+  padding:0px;
+}
+
+  .i__header{
+    padding: 0 60px;
+    &__inner{
+      width: 100%;
+      padding: 15px 0 0;
+      margin: 0 auto;
+      min-height: 82px;
+      max-width: 1040px;
+      &__main{
+        position: relative;
+        display: flex;
+        align-items: center;
+        &__logo{
+          margin-right: 30px;
+          border-radius: 4px;
+        }
+        &__search{
+          width: 100%;
+          margin-left: auto;
+          height: 35px;
+        }
+        &__btn{
+          width: 36px;
+          padding: 4px;
+          background-color: #3CCACE;
+          float: right;
+          border: gray solid 0;
+          cursor: pointer;
+          &__icon{
+            img{
+              width: 100%;
+              vertical-align: bottom;
+            }
+            color: darkgray;
+          }
+        }
+      }
+    
+      &__nav{
+        display: flex;
+        padding-top: 10px;
+        padding-bottom: 15px;
+        margin-bottom: 10px;
+        font-size: 14px;
+        list-style: none;
+        &__left{
+          position: relative;
+          display: flex;
+          &__second{
+            padding-left: 40px;
+          }
+        }
+        &__right{
+          display: flex;
+          margin-left: auto;
+          #btn {
+            text-decoration: none;
+            :hover{color: orange;}
+            color: #333;
+          }
+          &__login{
+            padding-left:40px;
+          }
+        }
+      }
+    }  
+  }
+  .k__center{
+    width: 100%;
+    height: 560px;
+    background-color: white;
+    &__image{
+      background-image: image-url('bg-mainVisual-pict_pc.jpg');
+      width: 100%;
+      height: 560px;
+      background-position: top center;
+      position: relative;
+      display: flex;
+      padding: 0 60px;
+      background-repeat: no-repeat;
+      background-size: cover;
+      justify-content: center;
+      align-items: center;
+      &__content{
+        width: 100%;
+        height: 400px;
+        margin: 0 20px;
+        padding-top: 130px;
+        h2{
+            text-shadow: 0 0 5px rgba(0,0,0,0.4);
+            font-size: 60px;
+            color: #fff;
+        }
+        p{
+          text-shadow:0 0 5px rgba(0,0,0,0.4);
+          font-size: 18px;
+        }
+        &-icon{
+          display: flex;
+          .t__center__image__content-icon-app{
+            width: 180px;
+            padding: 0;
+            float: left;
+            #aBtn{
+              :hover{opacity: 0.5;}
+              .apple{
+                margin-top: 25px;
+                width: 100%;
+                padding: 0;
+                border-radius: 10px;
+              }
+            }
+          }
+          
+          .k__center__image__content-icon-google{
+            width: 180px;
+            padding: 0;
+            #gBtn{
+              :hover{opacity: 0.5;}
+              .google{
+                margin: 25px 0 0 10px;
+                width: 100%;
+                padding: 0;
+                border-radius: 10px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .i__footer{
+    background-color: #272727;
+    color: #fff;
+    padding: 60px 0;
+    text-align: center;
+    &__contents{
+      display: flex;
+      max-width: 840px;
+      margin: 0 auto;
+      &__list{
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        width: calc(1 / 3 * 100%);
+        margin: 0 2% 0 0;
+        &__top{
+          margin: 0 0 20px;
+          font-size: 16px;
+          font-weight: bold;
+        }
+        li{
+        color: #fff;
+        text-decoration: none;
+        font-size: 12px;
+        line-height: 32px;
+        a{
+          text-decoration: none;
+          color: #fff;
+          font-size: 12px;
+          font-weight: lighter;
+        }
+        }
+      }
+    }
+    p{
+      font-size: 14px;
+    }
+  }
+  .i__btn{
+    text-decoration: none;
+    color: inherit;
+    &__icon{
+      width: 120px;
+      background: #3CCACE;
+      text-align: center;
+      border-radius: 4%;
+      bottom: 32px;
+      right: 32px;
+      position: fixed;
+      padding: 15px;
+      &__text{
+        color: #fff;
+        display: block;
+        font-size: 18px;
+        text-decoration: none;
+        margin-bottom: 5px;
+      }
+    }
+  }

@@ -1,0 +1,82 @@
+.r__header
+  = render partial: 'layouts/header'
+.r__new-registration__container
+  .r__new-registration__main
+    .r__new-registration__main__header 会員情報登録
+    = form_for(@user, url: registration_path(resource_name)) do |f|
+      .r__new-registration__contents
+        .r__new-registration__contents__box
+          .field
+            = f.label "ニックネーム"
+            %span.require 必須
+            %br/ 
+            = f.text_field :nickname, autofocus: true, autocomplete: "nickname", class: "r__input-default", placeholder: "例 はたさん" 
+          .field
+            = f.label "Eメールアドレス"
+            %span.require 必須
+            %br/
+            = f.email_field :email, autofocus: true, autocomplete: "email", class: "r__input-default", placeholder: "Eメールアドレスを入力してください"
+          .field
+            = f.label "パスワード"
+            %span.require 必須
+            - if @minimum_password_length
+              %em
+                (7文字以上)
+            %br/
+            = f.password_field :password, autocomplete: "new-password", class: "r__input-default", placeholder: "7文字以上で入力"
+          .field
+            = f.label "パスワード(確認)"
+            %span.require 必須
+            - if @minimum_password_length
+              %em
+                (同じ文字7文字以上)
+            %br/
+            = f.password_field :password_confirmation, autocomplete: "new-password", class: "r__input-default", placeholder: "7文字以上で入力"
+
+          -# お名前欄について仮置のためカラムをemailで統一
+          .field
+            = f.label "お名前"
+            %span.require 必須
+            %br/
+            .field-half
+              = f.text_field :family_name, autofocus: true, autocomplete: "family_name", class: "r__input-default-half", placeholder: "姓"
+              = f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: "r__input-default-half", placeholder: "名"
+          -# お名前カナ欄について仮置のためカラムをemailで統一
+          .field
+            = f.label "お名前カナ"
+            %span.require 必須
+            %br/
+            .field-half
+              = f.text_field :family_name_kana, autofocus: true, autocomplete: "family_name", class: "r__input-default-half", placeholder: "セイ"
+              = f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name", class: "r__input-default-half", placeholder: "メイ"
+
+          -# 生年月日欄について仮置のためカラムをemailで統一
+          .field
+            %label
+              生年月日
+            %span.require 必須
+            %br/
+            .field-birthday
+              .field-birthday-box
+                = f.date_select :birth_date, use_month_numbers: true,start_year: 1930, end_year: (Time.now.year - 10), default: Date.new(1989, 1, 1)
+          
+          -# 電話番号欄について仮置のためカラムをemailで統一
+          .field
+            = f.label "電話番号"
+            %span.require 必須
+            %br/
+            = f.text_field :phone_number, autofocus: true, autocomplete: "number", class: "r__input-default", placeholder: "ハイフン無し 数字のみ入力"
+
+          -# 性別欄について仮置のためカラムをemailで統一
+          .field
+            = f.label "性別"
+            %span.require 必須
+            %br/
+            = f.radio_button :gender, 1
+            男性
+            = f.radio_button :gender, 2
+            女性
+            = f.radio_button :gender, 3
+            未選択
+          .actions
+            = f.submit "住所登録画面へ", class: "r__next-btn"

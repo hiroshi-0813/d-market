@@ -1,0 +1,42 @@
+.i__footer
+  .i__footer__contents
+    .ul.i__footer__contents__list
+      %h2.i__footer__contents__list__top FURIMAについて
+      %li
+        = link_to '会社概要（運営会社）', root_path, class: "i__footer__contents__list__top" 
+      %li
+        = link_to 'プライバシーポリシー', root_path, class: "i__footer__contents__list__top" 
+      %li
+        = link_to 'FURIMA利用規約', root_path, class: "i__footer__contents__list__top" 
+      %li
+        = link_to 'ポイントに関する特約', root_path, class: "i__footer__contents__list__top" 
+    .ul.i__footer__contents__list
+      %h2.i__footer__contents__list__top FURIMAを見る
+      %li
+        = link_to 'カテゴリー一覧', root_path, class: "i__footer__contents__list__top" 
+      %li
+        = link_to 'ブランド一覧', root_path, class: "i__footer__contents__list__top" 
+    .ul.i__footer__contents__list
+      %h2.i__footer__contents__list__top ヘルプ＆ガイド
+      %li
+        = link_to 'FURIMAガイド', root_path, class: "i__footer__contents__list__top" 
+      %li
+        = link_to 'FURIMAロゴ利用ガイドライン', root_path, class: "i__footer__contents__list__top"
+
+      %li
+        = link_to 'お知らせ', root_path, class: "i__footer__contents__list__top" 
+
+  .i__footer__logo
+    = link_to root_path do
+      = image_tag 'logo-white.png', alt: '', height: '40px', width: '140px', class: 'footer__logo__icon'
+  %p © FURIMA
+  - if user_signed_in?
+    %a(href="/items/new")
+      .i__btn__icon
+        %span.i__btn__icon__text 出品する
+        = image_tag 'icon_camera.png', alt: '' , height: '55px', width: '55px', class: ''
+  - else
+    %a(href="/users/sign_in")
+      .i__btn__icon
+        %span.i__btn__icon__text ログインして出品する
+        = image_tag 'icon_camera.png', alt: '' , height: '55px', width: '55px', class: ''

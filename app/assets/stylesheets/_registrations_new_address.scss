@@ -1,0 +1,59 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  }
+
+.s-address{
+ &_main{
+    background-color: #f8f8f8;
+    padding: 26px 16px 40px;
+  &_r{
+      width: 700px;
+      margin: 0 auto;
+      background: white;
+      padding-bottom: 50px;
+   h2{
+   padding: 32px;
+   font-size: 22px;
+   text-align: center;
+   }
+    &_contents{
+      max-width: 340px;
+      margin: 0 auto;
+      .field{
+        font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
+        margin: 10px;
+       .require{
+        background-color: red;
+        color:white;
+       }
+       .input-default{
+         margin-bottom: 5px;
+         width: 100%;
+         padding: 5px;
+         height: 45px;
+       }
+       .any{
+        background: #ccc;
+        color:white;
+       }
+       .select-box{
+        width: 100%;
+        height: 40px;
+        background: white;
+       }
+      }
+        .next-btn{
+        width: 100%;
+        height: 50px;
+        background: #3ccace;
+        margin: 24px 0 0;
+        color:white;
+        border: 0px none;
+        }
+    
+   }
+  }
+ }
+}

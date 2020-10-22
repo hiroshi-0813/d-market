@@ -1,100 +1,114 @@
-.home-main
-  .header_contents
-    .header_logo
-      = image_tag "logo.png", size: "140x40"
-    .header-seach
-      = form_with do |form| 
-        = form.text_field :keyword, placeholder: "キーワードから探す", class: "search-input"
-        = link_to "#", class: "serch-btn" do
-          = image_tag "icon-search.png", size: "18x18"
-.item_main
-  .item_holder
-    .item_box
-      .item_contents
-        .item_data
-          .item_name
-            ゲベ
-          .item_image
-            = image_tag "black.jpg"
-            .small_image
-              = image_tag "black.jpg", size: "140x100"
-          .item_price
-            30000000円
-          .item_price_zei
-            (税込み)  送料込み
-          .item_buy
-            購入画面に進む
-          .item_description
-            ブラックロータスの本物です。ああああああああああああああああああああああああああああああああああああああああああああああああああ
-          .item_status
-            .today
-              .tr
-                .th
-                  出品者
-                .td
-                  松岡修造
-              .tr
-                .th
-                  カテゴリー
-                .td
-                  カード
-              .tr
-                .th
-                  商品の状態
-                .td
-                  未使用に近い
-              .tr
-                .th
-                  配送料の負担
-                .td
-                  送料込み（出品者負担）
-              .tr
-                .th
-                  発送元の地域
-                .td
-                  青森県
-              .tr
-                .th
-                  発送日の目安
-                .td
-                  1~2日で発送
-          .option
-            .fav
-              ★お気に入り
-            .report
-              🏴不適切な商品の通報
-.form
-  .form-to
-    .form-list
-      .form-title
-        .title
-          FURIMAについて
-        %li.list
-          会社概要（運営会社）
-        %li.list
-          プライバシーポリシー
-        %li.list
-          FURIMA利用規約
-        %li.list
-          ポイントに関する特約
-      .form-title
-        .title
-          FURIMAを見る
-        %li.list
-          カテゴリー一覧
-        %li.list
-          ブランド一覧
-      .form-title
-        .title
-          ヘルプ＆ガイド
-        %li.list
-          FURIMAガイド
-        %li.list
-          FURIMAロゴ利用オンライン
-        %li.list
-          お知らせ
-    .form-logo
-      .logo
-        = image_tag "logo-white.png", size: "150x35"
-      .logo-text
-        FURIMA
+.k-header
+  = render partial: 'layouts/header'
+
+.k__main
+  .k__showMain
+    .k__content
+      .k__itemBox
+        .k__itemBox__name
+          = @item.name
+        .k__itemBox__body
+          %ul
+            %li
+              = image_tag @item.images[0].src.to_s, class:"firstImage", width:520
+              -if @item.buyer_id.present?
+                .triangle
+                .sold
+                  SOLD
+              %ul
+                - @item.images.each do |image|
+                  %li
+                    = image_tag image.src.to_s, :width => "75", :height => "75",class:"imageList"
+        .k__itemBox__price
+          ¥ 
+          =@item.price
+          .k__itemBox__price-detail
+            %span (税込)
+            %span 送料込み
+        .k__itemDetail
+          .noticeMsg
+            = simple_format @item.description
+        .k__table
+          %table
+            %tbody
+              %tr
+                %th 出品者
+                %td
+                  = @item.user.nickname
+              %tr
+                %th カテゴリー
+                %td.k__table--blue
+                  = link_to category_path(@item.category.id) do
+                    =@item.category.name 
+              %tr
+                %th ブランド
+                %td
+                  =@item.brand.name
+              %tr
+                %th 商品のサイズ
+                %td
+                  =@item.size
+              %tr
+                %th 商品の状態
+                %td
+                  =@item.condition.name
+              %tr
+                %th 配送料の負担
+                %td
+                  = @item.postage
+              %tr
+                %th 発送元の地域
+                %td
+                  = @item.prefecture.name
+              %tr
+                %th 発送日の目安
+                %td
+                  =@item.wait
+        .k__optonalArea
+          %ul
+            %li.k__optinalBtn.k__likeBtn              
+              =icon('fa','star')
+              お気に入り 0
+          %ul.k__optional
+            %li.k__optionalBtn
+              =link_to "#" do
+                =icon('fa','flag')
+                不適切な商品の通報
+
+      .k__itemChangeBox
+        %ul.k__itemChangeBox__btnList
+          -if @item.buyer_id.present?
+            %li.k__itemChangeBox__btnList__soldOutNotice
+              売り切れました
+          - elsif user_signed_in? && current_user.id == @item.user_id
+            .r__itemManageBox
+              = link_to "編集", edit_item_path(@item), class: "r__itemManageBox__edit" 
+              = link_to "削除", item_path(@item.id), method: :delete, class: "r__itemManageBox__delete" 
+          - else
+            .k__itemChangeBox
+              %button.k__itemChangeBox__btnList__buyBtn
+                = link_to "購入画面に進む", purchase_path(@item), class:"k__itemChangeBox__btnList__buyBtn__link"
+    
+      .k__commentBox
+        .k__commentBox__list
+          .k__commentBox__list__icon
+            =icon('fa','user')
+          .k__commentBox__list__content
+            .k__commentBox__list__content__name
+              バイヤーテスト
+            .k__commentBox__list__content__message
+              test
+            .k__commentBox__list__content__date
+              2020-06-09 12:00:00 +0900
+
+        .form
+          %input.k__comment{type: "text"}
+          .k__noticeMsg
+            %p
+              相手のことを考え丁寧なコメントを心がけましょう。
+              %br 不快な言葉遣いなどは利用制限や退会処分となることがあります。
+          %br
+          %input.k__commentBtn{type: "submit", value: "コメントする"}
+
+.k-footer
+  = render partial: 'layouts/footer'

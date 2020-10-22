@@ -1,0 +1,90 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  }
+
+
+.s_login{
+  padding: 0 0 100px;
+  background-color:whitesmoke;
+  &_header{
+    height:128px;
+    text-align: center;
+    &_logo{
+      margin: 40px 0 0;
+      display: inline-block;
+    }
+  }
+  &_menu{
+    display: block;
+    &_box{
+      width: 456px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      &_account{
+        padding: 40px 64px;
+        text-align: center;
+        &_message{
+            font-size: 14px;
+          &_link{
+            @include link();
+          }
+        }
+      }
+    &_sns{
+      padding:32px 64px;
+      border-top: 1px solid #eee;
+      &_facebook{
+        background: #385185;
+        color: $white;
+        @include sns-btn ();
+        border: 1px solid transparent;
+        &_icon{
+        @include sns-icon();
+        }
+      }
+    &_google{
+        margin: 16px 0 0;
+        background: $white;
+        border: #979797 solid 1px;
+        color: #333;
+        @include sns-btn ();
+        &_icon{
+          color: green;
+        @include sns-icon();
+        }
+      }
+    }
+
+    &_form{
+      padding:32px 70px 32px 65px;
+      .new_user{
+      .s_login_menu_box_form_email{
+          &_address{
+            @include form-box();
+          }
+        }
+        .s_login_menu_box_form_password{
+          &_pass{
+            @include form-box();
+          }
+        }
+        .s_login_menu_box_form_submit{
+          &_btn{
+            background: #3ccAca;
+            border: 1px solid #3ccAca;
+            color: $white;
+            cursor: pointer;
+            text-align: center;
+            display: block;
+            width: 100%;
+            line-height: 48px;
+            font-size: 14px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

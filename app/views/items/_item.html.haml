@@ -1,7 +1,18 @@
-<div class="content">
-  <p><%= @items.name %></p>
-  <p><%= @items.price %>円</p>
-  <% @items.items_img.each do |image| %>
-    <%= image_tag image.src.url %>
-  <% end %>
-</div>
+= link_to item_path(item.id) do
+  .i__middle__container__border
+    .i__middle__container__border__content
+      .i__middle__container__border__content__image
+        %span.i__middle__container__border__content__image__price
+          ¥
+          = item.price
+        = image_tag item.images[0].src.to_s, width: '200px'
+        -if item.buyer_id.present?
+          .i__middle__container__border__content__image--triangle
+          .i__middle__container__border__content__image__soldout
+            SOLD
+      .i__middle__container__border__content__info
+        .i__middle__container__border__content__info__name
+          = item.name
+          .i__middle__container__border__content__info__name__icon
+            =icon('far','heart') do
+              %span 100

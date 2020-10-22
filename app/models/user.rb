@@ -3,22 +3,18 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  validates :nickname, presence: true, uniqueness: true
+  has_one :credit_card
+  has_many :items
+  has_one :address
 
+  # バリデーション
+  validates :nickname, :family_name, :first_name, :family_name_kana, :first_name_kana, :birth_date, :phone_number, :gender, presence: true
 
-  has_many :bought_items, foreign_key: "buyer_id", class_name: "Item"
-  has_many :selling_items, -> { where("buyer_id is NULL") }, foreign_key: "seller_id", class_name: "Item"
-  has_many :sold_items, -> { where("buyer_id is not NULL") }, foreign_key: "seller_id", class_name: "Item"
-         validates :nickname,:first_name,:last_name,:first_name_kana,:last_name_kana,:birthday, presence: true
-         validates :email, presence: true, uniqueness: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
-         validates :password, presence: true, length: { minimum: 7 }, format: { with: /(?=.*\d+.*)(?=.*[a-zA-Z]+.*)./ }
-         has_one :address
-         has_one :creditcard
-         has_many :items
-         has_many :favorites, dependent: :destroy
-         has_many :liked_items, through: :likes, source: :item
-         has_many :comments
+  # 文字の形式制限
+  validates :family_name, :first_name, format: { with: /\A[ぁ-んァ-ン一-龥]/,
+    message: "全角文字のみが使えます" }
+  validates :family_name_kana,:first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/,
+    message: "全角カナのみが使えます" }
 
-validates :nickname, presence: true, uniqueness: true
 
 end

@@ -1,0 +1,28 @@
+.s_login
+  .s_login_header
+    %h1.s_login_header_logo
+      = image_tag "logo.png", size: "185x50", alt: "FURIMA画像"
+ 
+  .s_login_menu
+    .s_login_menu_box
+      .s_login_menu_box_account
+        %p.s_login_menu_box_account_message アカウントをお持ちでない方はこちら
+        = link_to new_user_registration_path, class: "s_login_menu_box_account_message_link"do
+          新規会員登録
+      .s_login_menu_box_sns
+        %botton.s_login_menu_box_sns_facebook
+          %i.fab.fa-facebook-square.s_login_menu_box_sns_facebook_icon
+          Facebookでログイン
+        %botton.s_login_menu_box_sns_google
+          %i.fab.fa-google.s_login_menu_box_sns_google_icon
+          Googleでログイン
+
+      .s_login_menu_box_form
+        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          .s_login_menu_box_form_email
+            = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス" ,class: "s_login_menu_box_form_email_address"
+          .s_login_menu_box_form_password
+            = f.password_field :password, autocomplete: "current-password", placeholder: "パスワード", class: "s_login_menu_box_form_password_pass"
+          .s_login_menu_box_form_submit
+            = f.submit "ログイン", class:"s_login_menu_box_form_submit_btn"
+

@@ -1,47 +1,40 @@
 Rails.application.routes.draw do
+  root 'items#top'
 
   devise_for :users, controllers: {
-    registrations: 'users/registrations'
+    registrations: 'users/registrations',
   }
-  
   devise_scope :user do
     get 'addresses', to: 'users/registrations#new_address'
     post 'addresses', to: 'users/registrations#create_address'
-    get 'creditcards', to: 'users/registrations#new_creditcard'
-    post 'creditcards', to: 'users/registrations#create_creditcard'
-  end
-
-  root 'items#index'
-
-  resources :items, only: [:index, :new, :create]
-
-  resources :users, only: [:show, :edit, :update]do
-    member do
-      get 'profile'
-      patch 'profile_update'
-      get 'logout'
-    end
-    collection do
-      get 'ready'
-    end
-  end
-  namespace :items do
-    resources :searches, only: [:index,:show]
-    
-  end
-
-  resources :items do
-    member do
-      post 'purchase'
-      get 'buy'
-    end
   end
   
-  resources :credit_cards, only: [:new, :show]do
+  resources :users, only: [:index] do
     collection do
-      post 'show', to: 'credit_cards#show'
-      post 'pay', to: 'credit_cards#pay'
-      post 'delete', to: 'credit_cards#delete'
+      get 'logout'
+    end 
+  end
+  resources :credit_cards, only: [:index, :new, :create, :show, :destroy]
+
+  resources :purchase, only:[:index] do
+    collection do
+      get 'done', to: 'purchase#done'
+    end
+    member do
+      get 'index', to: 'purchase#index'
+      post 'pay', to: 'purchase#pay'
     end
   end
+  resources :items do
+    collection do
+      get 'get_category_children', defaults: { format: 'json' }
+      get 'get_category_grandchildren', defaults: { format: 'json' }
+      get 'search', to: 'items#search'
+    end
+  end
+
+  resources :categories, only: :show
+  resources :images, only: [:index, :new, :show]
 end
+
+

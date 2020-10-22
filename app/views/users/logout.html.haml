@@ -1,12 +1,16 @@
-=render "home/header_login"
-- breadcrumb :logout
-= render "layouts/breadcrumbs"
-=render "users/mypage_side"
-.mypage_a  
-  %main.mypage-contents.clearfix
-    .main-content
-      .logout
-        .logout-content
-          =link_to destroy_user_session_path, method: :delete, class:"btn-default btn-red" do
-            ログアウト
-=render "home/footer"
+= render partial: 'layouts/header'
+
+%main.y__l-container
+  .y__l-container-box
+    
+    = render 'mypage/side'
+    
+    .y__logout-page
+      .y__logout-page__inner   
+        .y__logout-page__content
+          -# ログアウト機能実装後に変更
+          -# = form_tag(destroy_user_session_path, method: :delete) do
+          = form_tag do
+            %button.y__btn-green{ type:'submit'} ログアウト
+
+= render partial: 'layouts/footer'

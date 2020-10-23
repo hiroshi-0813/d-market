@@ -14,7 +14,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.date :birth_month, null: false
       t.text :introduction
       t.string :phone_number, unique:true
-      t.user :references, null: false, foreign_key: true
 
       ## Recoverable
       t.string   :reset_password_token

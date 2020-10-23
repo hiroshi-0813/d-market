@@ -1,9 +1,17 @@
-= render partial: 'layouts/header', locals: { header: @header }
-.after-sign-up
-  .after-sign-up_content
-    .after-sign-up_content_box
-      %h1.after-sign-up_content_box_message 登録が完了しました
-      %p.after-sign-up_content_box_p 引き続きお買い物をお楽しみください
-      .after-sign-up_content_box_image
-      = link_to "トップページへ戻る", root_path, class: "s_top"
-= render partial: 'layouts/footer', locals: { footer: @footer }
+.signup-container
+  = render 'header-done'
+  %main.signup-main
+    %section.signup-main__container.signup-main__done
+      %h2.signup-main__head.signup-main__head--registration
+        会員登録完了
+      .signup-main__inner.signup-main__inner--registration-form
+        .signup-main__content
+          %p
+            ありがとうございます。
+            %br
+            会員登録が完了しました。
+            %br
+            フリマを始める
+          = link_to root_path do
+            = image_tag asset_path('logo.png')
+= render "footer"

@@ -27,10 +27,9 @@ class ItemsController < ApplicationController
 
   def destroy
     if @item.destroy
-      render :destory
+      render :destroy
     else
       redirect_to item_path(@item.id)
-    end
   end
     
   def edit

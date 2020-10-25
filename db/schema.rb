@@ -85,9 +85,38 @@ ActiveRecord::Schema.define(version: 2020_05_12_024159) do
     t.index ["size_id"], name: "index_items_on_size_id"
   end
 
-  create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "item_id", null: false
+  create_table "items_imgs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "url", null: false
+    t.integer "item", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "first_name", null: false
+    t.string "family_name", null: false
+    t.string "first_name_kana", null: false
+    t.string "family_name_kana", null: false
+    t.string "phone_number"
+    t.date "birth_year", null: false
+    t.date "birth_month", null: false
+    t.integer "user", null: false
+    t.text "introductin"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sending_destinations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "destination_first_name", null: false
+    t.string "destination_family_name", null: false
+    t.string "destination_first_name_kana", null: false
+    t.string "destnation_family_name_kana", null: false
+    t.integer "post_code", null: false
+    t.integer "prefercture_code", null: false
+    t.string "city", null: false
+    t.string "house_number", null: false
+    t.string "building_name"
+    t.integer "user", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_likes_on_item_id"

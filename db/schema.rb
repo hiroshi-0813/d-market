@@ -85,6 +85,34 @@ ActiveRecord::Schema.define(version: 2020_05_12_024159) do
     t.index ["size_id"], name: "index_items_on_size_id"
   end
 
+  create_table "items_imgs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "url", null: false
+    t.integer "item", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "first_name", null: false
+    t.string "family_name", null: false
+    t.string "first_name_kana", null: false
+    t.string "family_name_kana", null: false
+    t.string "phone_number"
+    t.date "birth_year", null: false
+    t.date "birth_month", null: false
+    t.integer "user", null: false
+    t.text "introductin"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_items_on_category_id"
+    t.index ["condition_id"], name: "index_items_on_condition_id"
+    t.index ["delivery_date_id"], name: "index_items_on_delivery_date_id"
+    t.index ["delivery_fee_id"], name: "index_items_on_delivery_fee_id"
+    t.index ["delivery_way_id"], name: "index_items_on_delivery_way_id"
+    t.index ["prefecture_id"], name: "index_items_on_prefecture_id"
+    t.index ["size_id"], name: "index_items_on_size_id"
+  end
+
   create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "item_id", null: false

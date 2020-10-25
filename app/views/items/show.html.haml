@@ -13,26 +13,25 @@
       .item_contents
         .item_data
           .item_name
-            ゲベ
+            = @item.name
           .item_image
-            = image_tag "black.jpg"
+            = image_tag @item.items_imgs[0].url.url, size: "100x130"
             .small_image
-              = image_tag "black.jpg", size: "140x100"
+              - @item.items_imgs.each do |image|
+                = image_tag image.url.url, size: "140x100"
           .item_price
-            30000000円
+            = @item.price
           .item_price_zei
             (税込み)  送料込み
-          .item_buy
-            購入画面に進む
           .item_description
-            ブラックロータスの本物です。ああああああああああああああああああああああああああああああああああああああああああああああああああ
+            = @item.introduction
           .item_status
             .today
               .tr
                 .th
                   出品者
                 .td
-                  松岡修造
+                  = @item.seller_id
               .tr
                 .th
                   カテゴリー
@@ -42,27 +41,33 @@
                 .th
                   商品の状態
                 .td
-                  未使用に近い
+                  = @item.item_condition.item_condition
               .tr
                 .th
                   配送料の負担
                 .td
-                  送料込み（出品者負担）
+                  = @item.postage_payer.postage_payer
               .tr
                 .th
                   発送元の地域
                 .td
-                  青森県
+                  = @item.prefecture.name
               .tr
                 .th
                   発送日の目安
                 .td
-                  1~2日で発送
+                  = @item.preparation_day.preparation_day
           .option
             .fav
               ★お気に入り
             .report
               🏴不適切な商品の通報
+    - unless user_signed_in? && current_user.id == @item.seller.id
+      = link_to "#", class: "item_buy" do
+        購入画面に進む
+    - if user_signed_in? && current_user.id == @item.seller.id
+      = link_to "編集", root_path, class: "item_buy"
+      = link_to "削除", root_path, class: "item_buy"
 .form
   .form-to
     .form-list

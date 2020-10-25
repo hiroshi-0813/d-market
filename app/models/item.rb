@@ -10,8 +10,8 @@ class Item < ApplicationRecord
   belongs_to :brand, optional: true
   belongs_to :seller, class_name: "User", optional: true
   belongs_to :buyer, class_name: "User", optional: true
-  has_many :items_img, dependent: :destroy
-  accepts_nested_attributes_for :items_img, allow_destroy: true
+  has_many :items_imgs, dependent: :destroy
+  accepts_nested_attributes_for :items_imgs, allow_destroy: true
   accepts_nested_attributes_for :brand
 
   validates :name, presence: true

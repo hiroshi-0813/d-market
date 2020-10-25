@@ -13,7 +13,12 @@ Rails.application.routes.draw do
 
   root 'items#index'
 
-  resources :items, only: [:index, :new, :create]
+  resources :items, only: [:index, :show, :new, :create] do
+    member do
+      post 'purchase'
+      get 'buy'
+    end
+  end
 
   resources :users, only: [:show, :edit, :update]do
     member do
@@ -28,13 +33,6 @@ Rails.application.routes.draw do
   namespace :items do
     resources :searches, only: [:index,:show]
     
-  end
-
-  resources :items do
-    member do
-      post 'purchase'
-      get 'buy'
-    end
   end
   
   resources :credit_cards, only: [:new, :show]do

@@ -2,6 +2,7 @@
 .item_main{
   height: 1300px;
   width: 1200px;
+  margin: 0 auto;
   background-color: #f8f8f8;
   .item_holder{
     padding: 40px 40px;
@@ -23,8 +24,9 @@
           width: 210px;
           object-fit: cover;
           margin: 20px auto;
-          .small_mage{
+          .small_image{
             margin: auto;
+            display: flex;
           }
         }
         .item_price{
@@ -35,16 +37,6 @@
         .item_price_zei{
           text-align: center;
           font-size: 15px;
-        }
-        .item_buy{
-          width: 70%;
-          height: 65px;
-          font-size: 30px;
-          background-color: gray;
-          color: honeydew;
-          margin: auto;
-          margin-top: 10px;
-          text-align: center;
         }
         .item_description{
           margin-top: 20px;
@@ -101,6 +93,16 @@
             border: 1px solid #333;
             padding: 5px 5px;
           }
+        }
+        .item_buy{
+          width: 70%;
+          height: 65px;
+          font-size: 30px;
+          background-color: #3CCACE;
+          color: honeydew;
+          margin: auto;
+          margin-top: 10px;
+          text-align: center;
         }
       }
     }

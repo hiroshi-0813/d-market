@@ -114,43 +114,21 @@
     .item-text-blue
       新規投稿商品
     .item-pic-list
-      .item-pic1
-        .item-image
-          = image_tag "black.jpg", size: "100x130"
-        .item-image-text
-          .item-name
-            ブラックロータス
-          .item-price
-            30000000円
-            .item-fav
-              ☆
-          .item-sale-tex
-            (税込)
-      .item-pic2
-        .item-image
-          = image_tag "appstore.jpg", size: "100x130"
-        .item-image-text
-          .item-name
-            itunesカード
-          .item-price
-            10000
-            .item-fav
-              ☆
-          .item-sale-tex
-            (税込)
-      .item-pic3
-        .item-image
-          = image_tag "chi.jpg", size: "100x130"
-        .item-image-text
-          .item-name
-            ちくわ
-          .item-price
-            2円
-            .item-fav
-              ☆
-          .item-sale-tex
-            (税込)
-.form-pic
+      - @items.each do |item|
+        .item-pic
+          = link_to item_path(item.id), class:"item_add" do
+            .item-image
+              = image_tag item.items_imgs[0].url.url, size: "100x130" if item.items_imgs.present?
+            .item-image-text
+              .item-name
+                = item.name
+              .item-price
+                = item.price
+                .item-fav
+                  ☆
+              .item-sale-tex
+                (税込)
+                
   .form-to
     .form-link-title
       誰でも簡単、人生を変えるアプリ

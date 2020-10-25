@@ -1,3 +1,5 @@
+@import "color";
+
 .mypage-contents.clearfix {
   width: 1020px;
   height: 1252px;
@@ -49,7 +51,7 @@
   height: 200px;
 }
 .profile-edit__btn{
-  background:$Red;
+  // background: $Red;
   height: 48px;
   line-height: 48px;
   display: block;
@@ -120,4 +122,3 @@ a{
     }
   }
 }
-@import "color";

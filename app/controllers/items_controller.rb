@@ -3,11 +3,7 @@ class ItemsController < ApplicationController
   before_action :set_card, only: [:purchase, :pay, :done]
 
   def index
-    @item = Item.all
-  end
-
-  def show
-    @item = Item.find(params[:id])
+    @items = Item.all
   end
 
   def new

@@ -62,12 +62,19 @@
               ★お気に入り
             .report
               🏴不適切な商品の通報
-    - unless user_signed_in? && current_user.id == @item.seller.id
-      = link_to "#", class: "item_buy" do
-        購入画面に進む
-    - if user_signed_in? && current_user.id == @item.seller.id
-      = link_to "編集", root_path, class: "item_buy"
-      = link_to "削除", root_path, class: "item_buy"
+  - if user_signed_in? && current_user.id == @item.user_id   
+    .edit-btn
+      = link_to "編集", edit_item_path(@item.id), class:"edit-btn__text"
+    .delete-btn
+      = link_to '削除する', item_path, method: :delete, class:"delete-btn__text"
+  - elsif user_signed_in?
+    -if @item.buyer_id.present?
+      .purchase-btn-red
+        .purchase-btn-red__text
+          Sold out 
+    - else
+      .purchase-btn
+        = link_to "購入する", purchase_items_path, class:"purchase-btn__text"
 .form
   .form-to
     .form-list

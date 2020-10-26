@@ -10,69 +10,79 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_10_140216) do
+ActiveRecord::Schema.define(version: 2020_05_12_024159) do
 
-  create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", null: false
+  create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "postal_code", null: false
+    t.string "prefecture_code", null: false
+    t.string "city_name", null: false
+    t.string "street", null: false
+    t.string "street2"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "card_id", null: false
+    t.string "customer_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_cards_on_user_id"
   end
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "item_id"
     t.string "name", null: false
-    t.string "ancestry", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "ancestry"
+    t.index ["ancestry"], name: "index_categories_on_ancestry"
+    t.index ["item_id"], name: "index_categories_on_item_id"
   end
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.text "comment", null: false
-    t.integer "user", null: false
-    t.integer "item", null: false
+    t.bigint "item_id", null: false
+    t.bigint "user_id", null: false
+    t.text "text", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_comments_on_item_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "credit_cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.string "customer_id", null: false
-    t.string "card_id", null: false
+  create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "src"
+    t.bigint "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "creditcards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.string "customer_id", null: false
-    t.string "card_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "favorites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "user", null: false
-    t.integer "item", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_images_on_item_id"
   end
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", null: false
-    t.text "introduction", null: false
+    t.integer "user_id"
+    t.text "name", null: false
+    t.string "content", null: false
+    t.string "brand"
+    t.bigint "category_id", default: 0, null: false
+    t.bigint "condition_id", default: 0, null: false
+    t.bigint "size_id", default: 0, null: false
+    t.bigint "delivery_date_id", default: 0, null: false
+    t.bigint "delivery_fee_id", default: 0, null: false
+    t.bigint "prefecture_id", null: false
+    t.bigint "delivery_way_id", default: 0, null: false
     t.integer "price", null: false
-    t.integer "brand_id"
-    t.integer "item_condition_id", null: false
-    t.integer "postage_payer_id", null: false
-    t.integer "prefecture_id", null: false
-    t.integer "size_id"
-    t.integer "postage_type_id", null: false
-    t.integer "category"
-    t.string "trading_status"
-    t.integer "seller_id", null: false
     t.integer "buyer_id"
-    t.integer "preparation_day_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_items_on_category_id"
+    t.index ["condition_id"], name: "index_items_on_condition_id"
+    t.index ["delivery_date_id"], name: "index_items_on_delivery_date_id"
+    t.index ["delivery_fee_id"], name: "index_items_on_delivery_fee_id"
+    t.index ["delivery_way_id"], name: "index_items_on_delivery_way_id"
+    t.index ["prefecture_id"], name: "index_items_on_prefecture_id"
+    t.index ["size_id"], name: "index_items_on_size_id"
   end
 
   create_table "items_imgs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -94,42 +104,58 @@ ActiveRecord::Schema.define(version: 2020_10_10_140216) do
     t.text "introductin"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_items_on_category_id"
+    t.index ["condition_id"], name: "index_items_on_condition_id"
+    t.index ["delivery_date_id"], name: "index_items_on_delivery_date_id"
+    t.index ["delivery_fee_id"], name: "index_items_on_delivery_fee_id"
+    t.index ["delivery_way_id"], name: "index_items_on_delivery_way_id"
+    t.index ["prefecture_id"], name: "index_items_on_prefecture_id"
+    t.index ["size_id"], name: "index_items_on_size_id"
   end
 
-  create_table "sending_destinations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "destination_first_name", null: false
-    t.string "destination_family_name", null: false
-    t.string "destination_first_name_kana", null: false
-    t.string "destnation_family_name_kana", null: false
-    t.integer "post_code", null: false
-    t.integer "prefercture_code", null: false
-    t.string "city", null: false
-    t.string "house_number", null: false
-    t.string "building_name"
-    t.integer "user", null: false
+  create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "item_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_likes_on_item_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
-  create_table "user_evaluations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.text "review", null: false
-    t.integer "user", null: false
-    t.integer "item", null: false
-    t.integer "evalution_id", null: false
+  create_table "sns_credentials", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "provider"
+    t.string "uid"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sns_credentials_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.string "nickname", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "nickname", null: false
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "first_name_kana", null: false
+    t.string "last_name_kana", null: false
+    t.string "phone_number"
+    t.integer "birthday_year_id", null: false
+    t.integer "birthday_moon_id", null: false
+    t.integer "birthday_day_id", null: false
+    t.text "self_introduce"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_users_on_email"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "cards", "users"
+  add_foreign_key "images", "items"
+  add_foreign_key "likes", "items"
+  add_foreign_key "likes", "users"
+  add_foreign_key "sns_credentials", "users"
 end

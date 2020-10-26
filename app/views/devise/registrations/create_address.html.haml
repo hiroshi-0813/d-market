@@ -1,0 +1,17 @@
+.signup-container
+  = render 'header-done'
+  %main.signup-main
+    %section.signup-main__container.signup-main__done
+      %h2.signup-main__head.signup-main__head--registration
+        会員登録完了
+      .signup-main__inner.signup-main__inner--registration-form
+        .signup-main__content
+          %p
+            ありがとうございます。
+            %br
+            会員登録が完了しました。
+            %br
+            フリマを始める
+          = link_to root_path do
+            = image_tag asset_path('logo.png')
+= render "footer"

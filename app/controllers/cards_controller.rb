@@ -1,5 +1,5 @@
 class CardsController < ApplicationController
-  before_action :get_payjp_info, only: [:new_create, :create ,:delete, :show]
+  before_action :get_payjp_info, only: [:new_create, :create, :delete, :show]
   before_action :set_card, only: [:delete, :show]
 
   def edit

@@ -46,7 +46,7 @@
             = link_to "クレジットカードを登録する",confirmation_card_path(current_user.id),class: "method--change--btn"
         - else
           %li
-            = "**** **** **** " + @default_card_information.last4
+            = "**** **** ****" + @default_card_information.last4
           %li
             - exp_month = @default_card_information.exp_month.to_s
             - exp_year = @default_card_information.exp_year.to_s.slice(2,3)

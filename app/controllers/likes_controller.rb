@@ -17,7 +17,7 @@ class LikesController < ApplicationController
   def set_variables
     @item = Item.find(params[:item_id])
     @id_name = "#like-link-#{@item.id}"
-    # @id_nameは非同期の時に使う
+    #@id_nameは非同期の時に使う
   end
 
 end

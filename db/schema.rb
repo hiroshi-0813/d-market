@@ -27,10 +27,13 @@ ActiveRecord::Schema.define(version: 2020_10_10_140216) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "comment", null: false
-    t.integer "user", null: false
-    t.integer "item", null: false
+
+    t.integer "user_id", null: false
+    t.bigint "item_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_comments_on_item_id"
+
   end
 
   create_table "credit_cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -50,10 +53,12 @@ ActiveRecord::Schema.define(version: 2020_10_10_140216) do
   end
 
   create_table "favorites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "user", null: false
-    t.integer "item", null: false
+
+    t.integer "user_id", null: false
+    t.bigint "item_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+
   end
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -77,7 +82,9 @@ ActiveRecord::Schema.define(version: 2020_10_10_140216) do
 
   create_table "items_imgs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "url", null: false
-    t.integer "item", null: false
+
+    t.bigint "item_id"
+
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -132,4 +139,8 @@ ActiveRecord::Schema.define(version: 2020_10_10_140216) do
     t.index ["email"], name: "index_users_on_email"
   end
 
-end
+
+  add_foreign_key "comments", "items"
+  add_foreign_key "favorites", "items"
+  add_foreign_key "items_imgs", "items"
+

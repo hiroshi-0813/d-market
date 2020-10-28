@@ -1,144 +1,143 @@
 # d-market DB設計
 
-## users_table
+
+
+## usersテーブル
 |Column|Type|Options|
 |------|----|-------|
-|email|string|null: false, unique: true, index: true|
-|password|string|null: false|
 |nickname|string|null: false|
-### Association
-  has_many :comments
-  has_many :favorites
-  has_many :items
-  has_many :user_evaluations
-  has_many :seller_items, foreign_key: "seller_id", class_name: "items"
-  has_many :buyer_items, foreign_key: "buyer_id", class_name: "items"
-  has_one :profile, dependent: :destroy
-  has_one :sending_destination, dependent: :destroy
-  has_one :credit_card, dependent: :destroy
-
-## profiles_table
-|Column|Type|Options|
-|------|----|-------|
 |first_name|string|null: false|
-|family_name|string|nuill: false|
+|last_name|string|null: false|
 |first_name_kana|string|null: false|
-|family_name_kana|string|null: false|
-|birth_year|date|null: false|
-|birth_month|date|null: false|
-|introductin|text|--|
-|phone_number|string|unique:true|
-|user|references|null:false, foreign_key: true|
+|last_name_kana|string|null: false|
+|email|string|null: false| [](メールアドレス)
+|phone_number|string|| [](電話番号)
+|password|string|null: false| [](パスワード)
+|birthday_year_id|integer|null: false|
+|birthday_moon_id|integer|null: false|
+|birthday_day_id|integer|null: false|
+|self_introduce|text|-------| [](自己紹介文)
 
-### Association
-  belongs_to :user
+## Association
+- has_many :items
+- has_many :comments
+- has_one :address
+- has_one :card 
+- has_many :sns_credentials
+- belongs_to_active_hash :birth_year
+- belongs_to_active_hash :birth_moom
+- belongs_to_active_hash :birth_day     
+- has_many :likes, dependent: :destroy
+- has_many :like_items, through: :likes, source: :item
 
-## items_table
+## itemsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false|
-|introduction|text|null: false|
-|price|integer|null: false|
-|brand|references|foreign_key: true|
-|item_condition_id(active_hash)|integer|null: false|
-|postage_payer_id(active_hash)|integer|null: false|
-|prefecture_id(active_hash)|integer|null: false|
-|size_id|integer|null: false, foreign_key: true|
-|postage_type_id(active_hash)|integer|null: false|
-|category|references|null: false, foreign_key: true|
-|trading_status|enum|null: false|
-|seller|references|null: false, foreign_key: true|
-|buyer|references|foreign_key: true|
-|deal_closed_date|timestamp|------|
-|preparation_day_id(active_hash)|integer|null: false|
+|user_id|integer||
+|name|text|null: false| [](商品名)
+|content|string|null: false| [](商品の説明)
+|brand|string|| [](ブランド)
+|category|references|null: false, default: 0| [](カテゴリー)
+|condition|references|null: false| [](商品の状態)
+|size|references|null: false, default: 0| [](商品のサイズ)
+|delivery_date|references|null: false, default: 0| [](配送日)
+|delivery_fee|references|null: false, default: 0| [](配送料の負担)
+|prefecture|references|null: false, default: 0| [](発送元の地域)
+|delivery_way|references|null: false, default: 0| [](配送方法)
+|price|integer|null: false| [](販売価格)
+|buyer_id|integer|foreign_key: true|
 
 ### Association
-  has_many :comments, dependent: :destroy
-  has_many :favorites
-  has_many :item_imgs, dependent: :destroy
-  has_one :user_evaluation
-  belongs_to :category
-  belongs_to_active_hash :size
-  belongs_to_active_hash :item_condition
-  belongs_to_active_hash :postage_payer
-  belongs_to_active_hash :preparation_day
-  belongs_to_active_hash :postage_type
-  belongs_to_active_hash :prefecture
-  belongs_to :brand
-  belongs_to :items_img
-  belongs_to :seller, class_name: "User"
-  belongs_to :buyer, class_name: "User"
+- belongs_to :user
+- has_many :category
+- has_many :comments, dependent: :destroy
+- has_many :images, dependent: :destroy
+- accepts_nested_attributes_for :images, allow_destroy: true
+- belongs_to_active_hash :condition, resence: true 
+- belongs_to_active_hash :size, presence: true
+- belongs_to_active_hash :delivery_date, presence: true
+- belongs_to_active_hash :delivery_fee, presence: true
+- belongs_to_active_hash :prefecture, presence: true
+- belongs_to_active_hash :delivery_way, presence: true 
+- has_many :likes, dependent: :destroy
+- has_many :liking_users, through: :likes, source: :user
 
-## sending_destinations
+## Commentsテーブル(中間テーブル)
 |Column|Type|Options|
 |------|----|-------|
-|destination_first_name|string|null: false|
-|destination_family_name|string|null: false|
-|destination_first_name_kana|string|null: false|
-|destnation_family_name_kana|string|null: false|
-|post_code|integer(7)|null: false|
-|prefercture_code|integer|null: false|
-|city|string|null: false|
-|house_number|string|null: false|
-|building_name|string|------|
-|user|references|null: false, foreign_key: true|
-### Associations
-  belongs_to :user
+|user_id|integer|null: false|
+|item|reference|null: false|
+|user|reference|null: false|
+|text|text|null: false|
 
-## user_evaluations
-|Column|Type|Options|
-|------|----|-------|
-|review|text|null: false|
-|user|references|null: false, foreign_key: true|
-|item|references|null: false, foreign_key: true|
-|evalution_id(active_hash)|integer|null: false|
-### Associations
-  belongs_to_active_hash :evaluation
-  belongs_to :user
-  belongs_to :item
-
-## categories
-|Column|Type|Options|
-|name|string|null: false|
-|ancestry|string|null: false|
-### Associations
-  has_many :items
-
-## brands
-|Column|Type|Options|
-|name|stirng|null: false|
-### Associations
-  has_many :items
-
-## items_imgs
-|Column|Type|Options|
-|url|string|null: false|
-|item|references|null: false, foreign_key: true|
-### Associations
-  belongs_to :item
-
-## favorites
-|Column|Type|Options|
-|user|references|null: false, foreign_key: true|
-|item|references|null: false, foreign_key: true|
-### Associations
-  belongs_to :user
-  belongs_to :item
-
-## comments
-|Column|Type|Options|
-|comment|text|null: false|
-|user|references|null: false, foreign_key: true|
-|item|references|null: false, foreign_key: true|
-|created_at|timestamp|null: false|
 ### Association
-  belongs_to :user
-  belongs_to :item
+- belongs_to :user
+- belongs_to :item
 
-## credit_cards
+
+## Cardsテーブル
 |Column|Type|Options|
-|user_id|integer|null: false, foreign_key: true|
+|------|----|-------|
+|user|references|null: false, foreign_key: true|
 |customer_id|string|null: false|
 |card_id|string|null: false|
-### Associations
-  belongs_to:user　
+
+## Association
+- belongs_to :user
+
+
+## Address
+|Column|Type|Options|
+|------|----|-------|
+|user_id|integer|null: false|
+|postal_code|string|null: false| [](郵便番号)
+|prefecture_code|string|null: false| [](都道府県)
+|city_name|string|null: false| [](市)
+|street|string|null: false| [](番地、町)
+
+## Association
+- belongs_to :user
+
+
+## categoryテーブル
+|Column|Type|Options|
+|------|----|-------|
+|item|references|| 
+|name|string|null: false| [](カテゴリー)
+
+## Association
+- has_many :items
+- has_ancestry
+
+
+## imagesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|src|string|| 
+|item_id|references|null: false|
+
+## Association
+- belongs_to :item
+- mount_uploader :src, ImageUploader
+
+
+## sns_credentialsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|provider|string||
+|uid|string||
+|user|references|foreign_key: true|
+
+## Association
+- belongs_to :user, optional: true, dependent: :destroy
+
+
+## likelsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user|references|foreign_key: true, null: false|
+|item|references|foreign_key: true, null: false|
+
+## Association
+- belongs_to :user
+- belongs_to :item

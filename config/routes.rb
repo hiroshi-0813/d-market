@@ -35,8 +35,9 @@ Rails.application.routes.draw do
   
   resources :cards, only: [:create, :show, :edit] do
     collection do
-      post 'delete', to: 'cards#delete'     #クレカ削除アクション
-      post 'show'                           #登録クレカ確認ページ
+      post 'delete', to: 'cards#delete'   #クレカ削除アクション
+      post 'show', to: 'cards#show'         #登録クレカ確認ページ
+      post 'edit', to: 'cards#edit'          #登録クレカ登録ページ
     end
     member do
       get 'confirmation'                    #クレカ追加ページ

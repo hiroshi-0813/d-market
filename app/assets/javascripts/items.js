@@ -4,9 +4,10 @@ $(function(){
     const html = `<div data-index="${num}" class="js-file_group">
                     <input class="js-file" type="file"
                     name="item[images_attributes][${num}][src]"
-                    id="item_images_attributes_${num}_src"><br>
-                    <div class="js-remove">削除</div>
-                  </div>`;
+                    id="item_images_attributes_${num}_src">
+                    <span class="js-remove"><input type="submit"
+                    name="commit" value="削除" data-disable-with="削除"></span>
+                    </div>`;
     return html;
   }
   // プレビュー用のimgタグを生成する関数

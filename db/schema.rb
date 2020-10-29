@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2020_05_12_024159) do
   end
 
   create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.string "card_id", null: false
     t.string "customer_id", null: false
     t.datetime "created_at", null: false
@@ -86,8 +86,8 @@ ActiveRecord::Schema.define(version: 2020_05_12_024159) do
   end
 
   create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "item_id", null: false
+    t.bigint "user_id"
+    t.bigint "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_likes_on_item_id"

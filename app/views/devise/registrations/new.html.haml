@@ -100,7 +100,7 @@
                   = f.collection_select :birthday_day_id, BirthDay.all, :id, :day, name: 'day', prompt: '--', class: 'signup-main__select-default'
               %span 日
               =  render partial: 'error-messages', locals: { user: @user, column: "birthday_year_id"}
-              =  render partial: 'error-messages', locals: { user: @user, column: "birthday_moom_id"}
+              =  render partial: 'error-messages', locals: { user: @user, column: "birthday_moon_id"}
               =  render partial: 'error-messages', locals: { user: @user, column: "birthday_day_id"}
             .clearfix
           %p.signup-main__form-info-text

@@ -19,9 +19,9 @@
             %label 都道府県
             %span.signup-main__form-require 必須
             - if @user .errors.full_messages_for(:prefecture_code).any?
-              = f.select :prefecture_code, Address.prefectures.keys, {}, {class: 'signup-main__input-default--has-error'}
+              = f.select :prefecture_code, Address.prefectures.keys, {}, {class: 'signup-main__input-default--has-error'}, prompt: '選択してください'
             - else
-              = f.select :prefecture_code, Address.prefectures.keys, {}, class: 'signup-main__input-default'
+              = f.select :prefecture_code, Address.prefectures.keys, {}, class: 'signup-main__input-default', prompt: '選択してください'
             =  render partial: 'error-messages', locals: { user: @address, column: "prefecture_code" }
 
           .signup-main__form-group

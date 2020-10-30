@@ -26,7 +26,7 @@
               = f.email_field :email, { class: 'signup-main__input-default signup-main__input-default--has-error', placeholder: 'PC・携帯どちらでも可' }
             - else
               = f.email_field :email, { class: 'signup-main__input-default', placeholder: 'PC・携帯どちらでも可' }
-            =  render partial: 'error-messages', locals: { user: @user, column: "email"}
+            =  render partial: 'error-messages', locals: { user: @user, column: "email" }
 
           .signup-main__form-group
             %label パスワード
